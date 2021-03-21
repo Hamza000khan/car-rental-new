@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "strict": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "types": [
+      "@nestjs/typeorm",
+      "@nestjs/platform-express",
+      "@nestjs/config",
+      "@nestjs/swagger",
+      "@nestjs/passport",
+      "@nestjs/jwt",
+      "nestjs-typeorm-paginate",
+      "typeorm",
+      "typeorm-seeding",
+      "class-transformer",
+      "class-validator",
+      "@types/node",
+      "@types/jest",
+      "@types/supertest",
+      "@types/bcryptjs",
+      "@types/passport-jwt"
+    ],
+    "paths": {
+      "@app/*": ["./src/*"]
+    }
+  }
+}
