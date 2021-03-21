@@ -12,7 +12,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: 'secret',
     });
   }
-
+  // validating the jwt token for the credentials
   validate(
     payload: Pick<User, 'name' | 'username' | 'role'>,
   ): Pick<User, 'name' | 'username' | 'role'> {
