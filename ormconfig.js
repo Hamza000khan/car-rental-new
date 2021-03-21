@@ -1,3 +1,5 @@
+// typeorm configuration
+
 module.exports = {
   type: 'postgres',
   host:'localhost',
