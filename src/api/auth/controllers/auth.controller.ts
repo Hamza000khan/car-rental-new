@@ -44,6 +44,7 @@ export class AuthController {
     return {
       accessToken: this.jwtService.sign(
         {
+          // accessing the user details from the returned jwt token
           name: user.name,
           username: user.username,
           role: user.role,

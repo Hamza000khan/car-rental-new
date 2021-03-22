@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
+// # Auth module where all the imports such as controllers, services, models are handled
 @Module({
   imports: [
     UserModule,

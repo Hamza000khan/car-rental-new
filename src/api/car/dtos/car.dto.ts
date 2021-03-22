@@ -1,5 +1,6 @@
 import { IsDecimal, IsNotEmpty, IsUUID } from 'class-validator';
 
+// #  dto for the  car object
 export class CarDto {
   @IsNotEmpty()
   @IsUUID()
