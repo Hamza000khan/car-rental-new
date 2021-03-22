@@ -26,19 +26,21 @@ export class AuthController {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
   ) {}
-
+  // # Login Function
   @ApiBadRequestResponse({ description: 'Request body validation errors.' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized exception response.' })
   @Post('login')
   @HttpCode(200)
   async login(@Body() loginDto: LoginDto): Promise<JwtResponse> {
-    console.log('hello');
+    // Getting the user from the dto
     const user = await this.userService.getUserByUsername(loginDto.username);
 
+    // If not user and If not password throw error
     if (!user || !bcrypt.compareSync(loginDto.password, user.password)) {
       throw new UnauthorizedException('Authentication failed');
     }
 
+    // Else return jwt token for the login
     return {
       accessToken: this.jwtService.sign(
         {
