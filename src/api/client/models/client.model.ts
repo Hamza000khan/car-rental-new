@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+// client entity for the database validating schema
 @Entity('clients')
 export class Client {
   @PrimaryGeneratedColumn('uuid')

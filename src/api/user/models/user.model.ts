@@ -39,6 +39,7 @@ export class User {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt?: string;
 
+  // hashing tha password before storing it to the database
   @BeforeInsert()
   hashPassword(): void {
     this.password = bcrypt.hashSync(this.password);

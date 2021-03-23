@@ -8,13 +8,16 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 
 async function bootstrap() {
+  // creating the app module
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.use(helmet());
+  // adding the cors policy
   app.enableCors();
   app.use(compression());
   app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 50 }));
 
+  // setting the global uri prefix
   app.setGlobalPrefix('/v1/api');
   app.useGlobalPipes(
     new ValidationPipe({
@@ -23,11 +26,13 @@ async function bootstrap() {
     }),
   );
 
+  // config for the swagger ui
   SwaggerModule.setup(
     'api',
     app,
     SwaggerModule.createDocument(
       app,
+      // building the swagger and setting its parametres
       new DocumentBuilder()
         .setTitle('Car Rental Management System')
         .setDescription('API documentation for car rental management system.')

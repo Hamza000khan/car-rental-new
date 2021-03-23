@@ -6,6 +6,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
+// client dto for validating requests data obj
 export class ClientDto {
   @IsNotEmpty()
   @IsString()

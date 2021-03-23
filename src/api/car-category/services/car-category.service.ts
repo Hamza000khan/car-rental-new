@@ -45,6 +45,7 @@ export class CarCategoryService {
     return this.carCategoryRepository.update(id, carCategoryDto);
   }
 
+  // Method for deleting car category with a specifc provided id
   deleteCarCategory(id: string): Promise<DeleteResult> {
     return this.carCategoryRepository.delete(id);
   }

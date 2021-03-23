@@ -2,6 +2,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 
+// custom injectable authorize decorator for the admin user role
 @Injectable()
 export class AuthorizeGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {}

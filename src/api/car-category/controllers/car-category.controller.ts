@@ -76,6 +76,7 @@ export class CarCategoryController {
   @ApiBadRequestResponse({ description: 'Request body validation errors.' })
   @Post()
   @Roles('admin')
+  // Adding new car category
   async store(@Body() carCategoryDto: CarCategoryDto): Promise<CarCategory> {
     return this.carCategoryService.insertCarCategory(carCategoryDto);
   }
@@ -84,13 +85,19 @@ export class CarCategoryController {
   @ApiNotFoundResponse({ description: 'Not found exception response.' })
   @Put(`:id(${uuidRegex})`)
   @Roles('admin')
+  // Updating a specific car category with id
   async update(
+    // Retrieving the id and dto from the reequest parametres
     @Param('id') id: string,
     @Body() carCategoryDto: CarCategoryDto,
   ): Promise<CarCategory> {
+    // checking if the category with the provided id is present in the database or not
     const carCategory = await this.carCategoryService.getCarCategoryById(id);
+
+    // Category not found throw not found exception error
     if (!carCategory) throw new NotFoundException('Car category not found');
 
+    // else update the found category with the provided dto
     await this.carCategoryService.updateCarCategory(id, carCategoryDto);
 
     return { ...carCategory, ...carCategoryDto };
@@ -101,10 +108,15 @@ export class CarCategoryController {
   @Delete(`:id(${uuidRegex})`)
   @Roles('admin')
   @HttpCode(204)
+  // Deleting car category
   async destroy(@Param('id') id: string): Promise<void> {
+    // searching for the car category with the provided id
     const carCategory = await this.carCategoryService.getCarCategoryById(id);
+
+    // if not found throw not found exception error
     if (!carCategory) throw new NotFoundException('Car category not found');
 
+    // else delete the car category from the database
     await this.carCategoryService.deleteCarCategory(id);
   }
 }
