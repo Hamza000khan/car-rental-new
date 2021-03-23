@@ -29,6 +29,7 @@ import {
 } from '@nestjs/swagger';
 import { Pagination } from 'nestjs-typeorm-paginate';
 
+// # Car category controller class
 @ApiTags('car-category')
 @ApiBearerAuth()
 @Controller('car-categories')
@@ -39,10 +40,12 @@ export class CarCategoryController {
     private readonly configService: ConfigService,
   ) {}
 
+  // controller class methods
   @ApiQuery({ name: 'page', example: 1, required: false })
   @ApiQuery({ name: 'limit', example: 10, required: false })
   @Get()
   @Roles('admin')
+  // For getting all the categories from the database
   async index(
     @Query('page') page = 1,
     @Query('limit') limit = 10,
@@ -54,12 +57,19 @@ export class CarCategoryController {
     });
   }
 
+  // Getting the car category with specific id
   @ApiNotFoundResponse({ description: 'Not found exception response.' })
   @Get(`:id(${uuidRegex})`)
   @Roles('admin')
+  // extracting the id passed in the request parametres
   async show(@Param('id') id: string): Promise<CarCategory> {
+    // checking if the car pository with the passed id is present in the database
     const carCategory = await this.carCategoryService.getCarCategoryById(id);
+
+    // IF no car category is found in the database throw not found error
     if (!carCategory) throw new NotFoundException('Car category not found');
+
+    // else return found car category
     return carCategory;
   }
 

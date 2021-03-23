@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+// # Car category entity class / Model class
 @Entity('car_categories')
 export class CarCategory {
   @PrimaryGeneratedColumn('uuid')

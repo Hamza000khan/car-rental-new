@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
+// # car category dto for the data validation
 export class CarCategoryDto {
   @IsNotEmpty()
   @IsString()
